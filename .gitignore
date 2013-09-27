@@ -4,3 +4,6 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 *.pyc
+CMakeCache.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
