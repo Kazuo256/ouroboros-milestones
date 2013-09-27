@@ -38,6 +38,13 @@ set_source_files_properties (
   GENERATED 1
 )
 
+set_source_files_properties (
+  ${EXAMPLE_00_SRC}
+  ${EXAMPLE_00_GENERATED_SRC}
+  PROPERTIES
+  COMPILE_FLAGS -std=gnu++0x
+)
+
 add_executable (
   ${EXAMPLE_00_EXECUTABLE}
   ${EXAMPLE_00_SRC}
