@@ -5,6 +5,12 @@ include_directories("src")
 
 set (EXAMPLE_00_EXECUTABLE example-00)
 
+ouroboros_wrap_module (
+  prompt
+  ${CMAKE_CURRENT_LIST_DIR}/src
+  EXAMPLE_00_GENERATED_SRC
+)
+
 set (
   EXAMPLE_00_SRC
   src/main.cxx
@@ -12,17 +18,7 @@ set (
   src/prompt.cxx
 )
 
-set (
-  EXAMPLE_00_GENERATED_SRC
-  src/Lua_prompt_wrap.cxx
-  src/Python_prompt_wrap.cxx
-)
-
-find_package (PythonLibs 2.6)
-include_directories (${PYTHON_INCLUDE_DIRS})
-
-find_package (Lua51)
-include_directories (${LUA_INCLUDE_DIR})
+message (STATUS ${EXAMPLE_00_GENERATED_SRC})
 
 add_custom_command (
   OUTPUT ${EXAMPLE_00_GENERATED_SRC}
