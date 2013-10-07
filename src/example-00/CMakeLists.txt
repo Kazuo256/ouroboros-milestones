@@ -34,16 +34,11 @@ set (
   src/prompt.cxx
 )
 
-message (STATUS ${EXAMPLE_00_GENERATED_SRC})
-
 set_source_files_properties (
-  ${EXAMPLE_00_GENERATED_SRC}
+  ${EXAMPLE_00_SRC}
   PROPERTIES
-  GENERATED 1
   COMPILE_FLAGS -std=gnu++0x
 )
-
-add_definitions (-std=gnu++0x)
 
 add_executable (
   ${EXAMPLE_00_EXECUTABLE}
