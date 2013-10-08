@@ -7,3 +7,4 @@ Makefile
 CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
+bin
