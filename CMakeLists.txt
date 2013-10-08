@@ -9,4 +9,5 @@ include (${OUROBOROS_WRAP_HELPER})
 add_subdirectory (example-00)
 add_subdirectory (example-01)
 add_subdirectory (example-02)
+add_subdirectory (example-03)
 
