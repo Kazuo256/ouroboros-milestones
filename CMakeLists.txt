@@ -6,8 +6,8 @@ add_subdirectory (externals/ouroboros EXCLUDE_FROM_ALL)
 include_directories (${OUROBOROS_INCLUDE_DIR})
 include (${OUROBOROS_WRAP_HELPER})
 
-add_subdirectory (example-00)
-add_subdirectory (example-01)
-add_subdirectory (example-02)
-add_subdirectory (example-03)
+add_subdirectory (milestone-00)
+add_subdirectory (milestone-01)
+add_subdirectory (milestone-02)
+add_subdirectory (milestone-03)
 

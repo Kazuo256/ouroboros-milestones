@@ -1,11 +1,11 @@
 
-set (EXAMPLE_EXECUTABLE example-02)
+set (MILESTONE_EXECUTABLE milestone-02)
 
 ouroboros_wrap_module (
   prompt
   lua
   ${CMAKE_CURRENT_LIST_DIR}
-  EXAMPLE_LUA_GENERATED_SRC
+  MILESTONE_LUA_GENERATED_SRC
   out.h
   input.h
 )
@@ -14,19 +14,19 @@ ouroboros_wrap_module (
   prompt
   python
   ${CMAKE_CURRENT_LIST_DIR}
-  EXAMPLE_PYTHON_GENERATED_SRC
+  MILESTONE_PYTHON_GENERATED_SRC
   out.h
   input.h
 )
 
 set (
-  EXAMPLE_GENERATED_SRC
-  ${EXAMPLE_LUA_GENERATED_SRC}
-  ${EXAMPLE_PYTHON_GENERATED_SRC}
+  MILESTONE_GENERATED_SRC
+  ${MILESTONE_LUA_GENERATED_SRC}
+  ${MILESTONE_PYTHON_GENERATED_SRC}
 )
 
 set (
-  EXAMPLE_SRC
+  MILESTONE_SRC
   main.cxx
   out.h
   out.cxx
@@ -35,19 +35,19 @@ set (
 )
 
 set_source_files_properties (
-  ${EXAMPLE_SRC}
+  ${MILESTONE_SRC}
   PROPERTIES
   COMPILE_FLAGS -std=gnu++0x
 )
 
 add_executable (
-  ${EXAMPLE_EXECUTABLE}
-  ${EXAMPLE_SRC}
-  ${EXAMPLE_GENERATED_SRC}
+  ${MILESTONE_EXECUTABLE}
+  ${MILESTONE_SRC}
+  ${MILESTONE_GENERATED_SRC}
 )
 
 target_link_libraries (
-  ${EXAMPLE_EXECUTABLE}
+  ${MILESTONE_EXECUTABLE}
   libouroboros
   libouroboros-lua
   libouroboros-python
