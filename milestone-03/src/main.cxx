@@ -4,6 +4,7 @@
 #include <opa/script.h>
 #include <opa/scriptmanager.h>
 #include <opa/virtualobj.h>
+#include <opa/exceptions.h>
 
 #include <cstdlib>
 #include <string>
@@ -27,14 +28,17 @@ void InitScripts () {
     SCRIPT_MANAGER()->Initialize("./scripts/");
 }
 
-bool RunTalker (const string& which) {
-    VirtualObj  talker = SCRIPT_MANAGER()->LoadModule(which+"talker");
+bool RunTalker (const string& which) try {
+    VirtualObj talker = SCRIPT_MANAGER()->LoadModule(which+"talker");
     if (!talker) return false;
     if (!talker["main"]) return false;
     VirtualObj::List args;
     VirtualObj result = talker["main"](args);
     if (!result) return false;
     return result.value<bool>();
+} catch (opa::InternalVMError& e) {
+    cout << e.what() << endl;
+    return false;
 }
 
 } // unnamed namespace
