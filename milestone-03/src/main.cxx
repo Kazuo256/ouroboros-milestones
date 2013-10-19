@@ -4,12 +4,12 @@
 #include <opa/script.h>
 #include <opa/scriptmanager.h>
 #include <opa/virtualobj.h>
-#include <opa/exceptions.h>
 
 #include <cstdlib>
 #include <string>
 #include <iostream>
 #include <memory>
+#include <stdexcept>
 
 using opa::VirtualObj;
 using opa::ScriptManager;
@@ -36,7 +36,7 @@ bool RunTalker (const string& which) try {
     VirtualObj result = talker["main"](args);
     if (!result) return false;
     return result.value<bool>();
-} catch (opa::InternalVMError& e) {
+} catch (std::runtime_error& e) {
     cout << e.what() << endl;
     return false;
 }
