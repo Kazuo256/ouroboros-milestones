@@ -8,6 +8,7 @@ ouroboros_wrap_module (
   MILESTONE_LUA_GENERATED_SRC
   out.h
   input.h
+  info.h
 )
 
 ouroboros_wrap_module (
@@ -17,6 +18,7 @@ ouroboros_wrap_module (
   MILESTONE_PYTHON_GENERATED_SRC
   out.h
   input.h
+  info.h
 )
 
 set (
@@ -32,6 +34,8 @@ set (
   out.cxx
   input.h
   input.cxx
+  info.h
+  info.cxx
 )
 
 set_source_files_properties (
