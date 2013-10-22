@@ -1,5 +1,6 @@
 
 #include "input.h"
+#include "info.h"
 
 #include <iostream>
 #include <string>
@@ -11,6 +12,7 @@ namespace input {
 using std::cin;
 using std::endl;
 using std::string;
+using data::Info;
 
 const char* Receiver::ReceiveMessage () {
     string value;
@@ -31,6 +33,17 @@ bool Receiver::ReceiveConfirmation () {
     if (value == "yes")
         return true;
     return false;
+}
+
+Info Receiver::ReceiveInfo () {
+    Info    info;
+    string  value;
+    cin >> value;
+    info.set_subject(value.c_str());
+    cin >> value;
+    info.set_predicate(value.c_str());
+    cin >> value;
+    info.set_object(value.c_str());
 }
 
 } // namespace input

@@ -2,8 +2,11 @@
 #ifndef OUROBOROS_MILESTONE_00_PROMPT_H_
 #define OUROBOROS_MILESTONE_00_PROMPT_H_
 
-namespace out {
+namespace data {
+class Info;
+}
 
+namespace out {
 
 class Sender {
 
@@ -18,8 +21,11 @@ class Sender {
     /// Prints prompt output.
     void SendMessage (const char* str);
     
-    /// Prints n prompt output.
+    /// Prints n prompt outputs.
     void SendMultimessage (const char* str, int n);
+
+    /// Prints an information.
+    void SendInfo (const data::Info& the_info);
 
   private:
 
