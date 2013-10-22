@@ -2,8 +2,6 @@
 #ifndef OUROBOROS_MILESTONE_PROMPT_INFO_H_
 #define OUROBOROS_MILESTONE_PROMPT_INFO_H_
 
-namespace data {
-
 class Info {
 
   public:
@@ -23,8 +21,6 @@ class Info {
     char subject_[256], predicate_[256], object_[256];
 
 };
-
-} // namespace data
 
 #endif // OUROBOROS_MILESTONE_PROMPT_INFO_H_
 

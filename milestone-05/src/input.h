@@ -2,9 +2,7 @@
 #ifndef OUROBOROS_MILESTONE_PROMPT_IN_H_
 #define OUROBOROS_MILESTONE_PROMPT_IN_H_
 
-namespace data {
-class Info;
-}
+#include "info.h"
 
 namespace input {
 
@@ -22,7 +20,7 @@ class Receiver {
     bool ReceiveConfirmation ();
 
     /// Receives an information from the input.
-    data::Info ReciveInfo ();
+    Info ReceiveInfo ();
 
   private:
 

@@ -3,8 +3,6 @@
 
 #include <cstring>
 
-namespace data {
-
 Info::Info () {}
 
 const char* Info::subject () {
@@ -30,6 +28,4 @@ void Info::set_predicate (const char* the_predicate) {
 void Info::set_object (const char* the_object) {
     std::strcpy(object_, the_object);
 }
-
-} // namespace data
 

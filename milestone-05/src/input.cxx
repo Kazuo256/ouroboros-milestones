@@ -1,6 +1,5 @@
 
 #include "input.h"
-#include "info.h"
 
 #include <iostream>
 #include <string>
@@ -12,7 +11,6 @@ namespace input {
 using std::cin;
 using std::endl;
 using std::string;
-using data::Info;
 
 const char* Receiver::ReceiveMessage () {
     string value;

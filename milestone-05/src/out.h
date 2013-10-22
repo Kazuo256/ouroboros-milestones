@@ -2,9 +2,7 @@
 #ifndef OUROBOROS_MILESTONE_00_PROMPT_H_
 #define OUROBOROS_MILESTONE_00_PROMPT_H_
 
-namespace data {
-class Info;
-}
+#include "info.h"
 
 namespace out {
 
@@ -25,7 +23,7 @@ class Sender {
     void SendMultimessage (const char* str, int n);
 
     /// Prints an information.
-    void SendInfo (const data::Info& the_info);
+    void SendInfo (Info& the_info);
 
   private:
 
