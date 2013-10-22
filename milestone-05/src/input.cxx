@@ -12,20 +12,20 @@ using std::cin;
 using std::endl;
 using std::string;
 
-const char* Receiver::receive_message () {
+const char* Receiver::ReceiveMessage () {
     string value;
     getline(cin, value);
     strcpy(buffer, value.c_str());
     return buffer;
 }
 
-double Receiver::receive_number () {
+double Receiver::ReceiveNumber () {
     double value;
     cin >> value;
     return value;
 }
 
-bool Receiver::receive_confirmation () {
+bool Receiver::ReceiveConfirmation () {
     string value;
     cin >> value;
     if (value == "yes")

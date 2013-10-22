@@ -9,13 +9,13 @@ class Receiver {
   public:
 
     /// Receives a message from the input.
-    const char* receive_message ();
+    const char* ReceiveMessage ();
     
     /// Receives a number from the input.
-    double receive_number ();
+    double ReceiveNumber ();
     
     /// Receives a confirmation from the input.
-    bool receive_confirmation ();
+    bool ReceiveConfirmation ();
 
   private:
 

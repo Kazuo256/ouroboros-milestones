@@ -12,7 +12,7 @@ using std::endl;
 Sender::Sender ()
     : break_line(true), TALKER_NAME("Bob Singer") {}
 
-void Sender::send_message (const char* str) {
+void Sender::SendMessage (const char* str) {
     if (break_line)
         cout << TALKER_NAME << ": " << str << endl;
     else {
@@ -21,7 +21,7 @@ void Sender::send_message (const char* str) {
     }
 }
 
-void Sender::send_multimessage (const char* str, int n) {
+void Sender::SendMultimessage (const char* str, int n) {
     for (int i=0; i < n; i++)
         cout << TALKER_NAME << ": " << str << endl;
 }

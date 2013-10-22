@@ -1,7 +1,5 @@
 
---require 'prompt'
-
-local out = require 'prompt.out'
+local out   = require 'prompt.out'
 local input = require 'prompt.input'
 
 local function nogetter ()
@@ -29,31 +27,31 @@ end
 function main ()
   local send = out.Sender()
   local receive = input.Receiver()
-  send:send_message("Let's check some things first...")
+  send:SendMessage("Let's check some things first...")
   if not nogetter() or not nosetter() then
     return false
   end
-  send:send_message("Everything ok so far. S'up bro.", 'unused');
-  send:send_message("Line breakage status is "..tostring(send.break_line), 'unused');
+  send:SendMessage("Everything ok so far. S'up bro.", 'unused');
+  send:SendMessage("Line breakage status is "..tostring(send.break_line), 'unused');
   while true do
-    local msg = receive:receive_message()
+    local msg = receive:ReceiveMessage()
     print("[received '"..msg.."']")
     if msg == "bye" then return true end
     if msg == "dude" then
-      send:send_multimessage("Say what?", 5)
+      send:SendMultimessage("Say what?", 5)
     elseif msg == "sqrt" then
-      send:send_message("Of...?")
-      local arg = receive:receive_number()
-      send:send_message("'Tis "..math.sqrt(arg))
+      send:SendMessage("Of...?")
+      local arg = receive:ReceiveNumber()
+      send:SendMessage("'Tis "..math.sqrt(arg))
     elseif msg == "My favorite color is blue." then
       send.break_line = false
-      send:send_message("You sure? ")
+      send:SendMessage("You sure? ")
       send.break_line = true
-      local answer = receive:receive_confirmation()
+      local answer = receive:ReceiveConfirmation()
       if answer then
-        send:send_message("Lame.")
+        send:SendMessage("Lame.")
       else
-        send:send_message("Indecisive fella.")
+        send:SendMessage("Indecisive fella.")
       end
     end
   end

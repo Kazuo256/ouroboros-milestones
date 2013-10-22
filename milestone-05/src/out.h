@@ -16,10 +16,10 @@ class Sender {
     Sender();
     
     /// Prints prompt output.
-    void send_message (const char* str);
+    void SendMessage (const char* str);
     
     /// Prints n prompt output.
-    void send_multimessage (const char* str, int n);
+    void SendMultimessage (const char* str, int n);
 
   private:
 
