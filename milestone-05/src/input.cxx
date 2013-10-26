@@ -34,14 +34,15 @@ bool Receiver::ReceiveConfirmation () {
 }
 
 Info Receiver::ReceiveInfo () {
-    Info    info;
+    Info*    info = new Info;
     string  value;
     cin >> value;
-    info.set_subject(value.c_str());
+    info->set_subject(value.c_str());
     cin >> value;
-    info.set_predicate(value.c_str());
+    info->set_predicate(value.c_str());
     cin >> value;
-    info.set_object(value.c_str());
+    info->set_object(value.c_str());
+    return info;
 }
 
 } // namespace input

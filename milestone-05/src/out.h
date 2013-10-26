@@ -23,7 +23,7 @@ class Sender {
     void SendMultimessage (const char* str, int n);
 
     /// Prints an information.
-    void SendInfo (Info& the_info);
+    void SendInfo (Info* the_info);
 
   private:
 

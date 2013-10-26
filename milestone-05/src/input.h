@@ -20,7 +20,7 @@ class Receiver {
     bool ReceiveConfirmation ();
 
     /// Receives an information from the input.
-    Info ReceiveInfo ();
+    Info* ReceiveInfo ();
 
   private:
 

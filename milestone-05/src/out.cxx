@@ -26,8 +26,8 @@ void Sender::SendMultimessage (const char* str, int n) {
         cout << TALKER_NAME << ": " << str << endl;
 }
 
-void Sender::SendInfo (Info& the_info) {
-    cout << the_info.subject() << " " << the_info.predicate() << " " << the_info.object() << endl;
+void Sender::SendInfo (Info* the_info) {
+    cout << the_info->subject() << " " << the_info->predicate() << " " << the_info->object() << endl;
 }
 
 } // namespace out
