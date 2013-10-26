@@ -33,8 +33,8 @@ bool Receiver::ReceiveConfirmation () {
     return false;
 }
 
-Info Receiver::ReceiveInfo () {
-    Info*    info = new Info;
+Info* Receiver::ReceiveInfo () {
+    Info*   info = new Info;
     string  value;
     cin >> value;
     info->set_subject(value.c_str());
