@@ -1,7 +1,7 @@
 
-local out   = require 'prompt.out'
-local input = require 'prompt.input'
-local data  = require 'prompt.data'
+local out     = require 'prompt.out'
+local input   = require 'prompt.input'
+local prompt  = require 'prompt'
 
 local function nogetter ()
   local test = input.Receiver()
@@ -28,7 +28,10 @@ end
 function main ()
   local send = out.Sender()
   local receive = input.Receiver()
-  local info
+  local info = prompt.Info()
+  info:set_subject "It"
+  info:set_predicate "doesn't"
+  info:set_object "matter"
   send:SendMessage("Let's check some things first...")
   if not nogetter() or not nosetter() then
     return false
@@ -58,6 +61,7 @@ function main ()
     elseif msg == "Learn info" then
       send:SendMessage "What info?"
       info = receive:ReceiveInfo()
+      send:SendMessage "Ok!"
     elseif msg == "Tell info" then
       send:SendMessage "Here's what I know:"
       send:SendInfo(info)

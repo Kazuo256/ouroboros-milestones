@@ -2,6 +2,7 @@
 #include "input.h"
 
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include <cstring>
@@ -11,6 +12,7 @@ namespace input {
 using std::cin;
 using std::endl;
 using std::string;
+using std::stringstream;
 
 const char* Receiver::ReceiveMessage () {
     string value;
@@ -35,12 +37,14 @@ bool Receiver::ReceiveConfirmation () {
 
 Info* Receiver::ReceiveInfo () {
     Info*   info = new Info;
-    string  value;
-    cin >> value;
+    string  line, value;
+    getline(cin, line);
+    stringstream linestream(line);
+    linestream >> value;
     info->set_subject(value.c_str());
-    cin >> value;
+    linestream >> value;
     info->set_predicate(value.c_str());
-    cin >> value;
+    linestream >> value;
     info->set_object(value.c_str());
     return info;
 }
