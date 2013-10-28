@@ -36,10 +36,12 @@ def main():
             out.SendMessage("toggled break line - "+str(out.break_line))
 
         elif msg == "info around":
+            out.SendMessage("type in the info...")
             inf = rec.ReceiveInfo()
             out.SendMessage("receiving and sending info...")
             out.SendInfo(inf)
         elif msg == "get info":
+            out.SendMessage("type in the info...")
             inf = rec.ReceiveInfo()
             out.SendMessage( "Got info = subject:%s | predicate:%s | object:%s "%(inf.subject(), inf.predicate(), inf.object()) )
         elif msg == "send info":
@@ -55,6 +57,6 @@ def main():
             out.SendInfo(inf)
 
         elif msg in ["help", "h"]:
-            out.SendMessage(" 'hip hip', 'scouter', 'ask me', 'break', 'quit'")
+            out.SendMessage(" 'hip hip', 'scouter', 'ask me', 'break', 'info around', 'get info', 'send info', 'quit'")
         
     return True
