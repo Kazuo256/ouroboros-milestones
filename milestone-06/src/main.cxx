@@ -14,12 +14,14 @@
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <utility>
 
 using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
 using std::shared_ptr;
+using std::make_pair;
 
 using opa::VirtualObj;
 using opa::ScriptManager;
@@ -40,14 +42,13 @@ void hello () {
   cout << "Hello!" << endl;
 }
 
+#define ENTRY(func) make_pair(string(#func), (func))
+
 int luaopen_native (lua_State* L_) {
   State L(L_);
   L.settop(0);
   L.newtable();
-  opa::lua::wrap::PushNativeFunction(L, add);
-  L.setfield(1, "add");
-  opa::lua::wrap::PushNativeFunction(L, hello);
-  L.setfield(1, "hello");
+  opa::lua::wrap::InsertNativeFunctions(L, 1, ENTRY(add), ENTRY(hello));
   return 1;
 };
 
