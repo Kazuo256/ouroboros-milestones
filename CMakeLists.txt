@@ -11,4 +11,5 @@ add_subdirectory (milestone-01)
 add_subdirectory (milestone-02)
 add_subdirectory (milestone-03)
 add_subdirectory (milestone-05)
+add_subdirectory (milestone-06)
 
