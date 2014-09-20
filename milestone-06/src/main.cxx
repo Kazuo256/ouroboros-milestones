@@ -3,6 +3,7 @@
 #include <languages/lua/converter.h>
 #include <languages/lua/header.h>
 #include <languages/lua/wrap/function.h>
+#include <languages/lua/wrap/module.h>
 
 #include <opa/script.h>
 #include <opa/scriptmanager.h>
@@ -29,6 +30,8 @@ using opa::Module;
 
 using opa::lua::LuaMachine;
 using opa::lua::State;
+using opa::lua::wrap::ModuleInfo;
+using opa::lua::wrap::Function;
 
 namespace {
 
@@ -42,14 +45,38 @@ void hello () {
   cout << "Hello!" << endl;
 }
 
+template<typename T, typename... Args>
+std::unique_ptr<T> make_unique(Args&&... args) {
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+
+int luaopen_native (lua_State* L_);
+
+ModuleInfo::FunctionList functions = {
+    make_unique<Function<int (int, int)>>("add",add),
+    make_unique<Function<void (void)>>("hello",hello)
+};
+
+ModuleInfo info(
+    "native", luaopen_native,
+    {
+        {"getters",{}}, {"setters",{}}, {"functions",functions},
+        {"member_getters",{}},
+        {"member_setters",{}},
+        {"member_functions",{}}
+    },
+    {}
+); 
+
 #define ENTRY(func) make_pair(string(#func), (func))
 
-int luaopen_native (lua_State* L_) {
-  State L(L_);
-  L.settop(0);
-  L.newtable();
-  opa::lua::wrap::InsertNativeFunctions(L, 1, ENTRY(add), ENTRY(hello));
-  return 1;
+int luaopen_native (lua_State* L) {
+    return ExportModule(L, &info);
+    //State L(L_);
+    //L.settop(0);
+    //L.newtable();
+    //opa::lua::wrap::InsertNativeFunctions(L, 1, ENTRY(add), ENTRY(hello));
+    //return 1;
 };
 
 void InitScripts () {
