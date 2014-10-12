@@ -1,7 +1,7 @@
 
-local out     = require 'prompt.out'
-local input   = require 'prompt.input'
-local prompt  = require 'prompt'
+local out     = require 'milestone_05_prompt.out'
+local input   = require 'milestone_05_prompt.input'
+local prompt  = require 'milestone_05_prompt'
 
 local function nogetter ()
   local test = input.Receiver()
