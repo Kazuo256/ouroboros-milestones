@@ -1,9 +1,18 @@
 
 set (MILESTONE_EXECUTABLE milestone-00)
 
-add_library(${MILESTONE_EXECUTABLE}-prompt prompt.h prompt.cxx)
+set ( PROMPT_SRC
+  prompt.cxx
+)
 
-ouroboros_export_metadata(${MILESTONE_EXECUTABLE}-prompt prompt.h)
+set ( PROMPT_HEADERS
+  prompt.h
+)
+
+add_library(${MILESTONE_EXECUTABLE}-prompt ${PROMPT_HEADERS} ${PROMPT_SRC})
+set_target_properties (${MILESTONE_EXECUTABLE}-prompt PROPERTIES FOLDER ${MILESTONE_EXECUTABLE})
+
+ouroboros_export_metadata(${MILESTONE_EXECUTABLE}-prompt ${PROMPT_HEADERS})
 ouroboros_create_wrappers(${MILESTONE_EXECUTABLE}-prompt lua)
 ouroboros_create_wrappers(${MILESTONE_EXECUTABLE}-prompt python)
 
@@ -22,6 +31,7 @@ endif()
    
 
 add_executable (${MILESTONE_EXECUTABLE} ${MILESTONE_SRC})
+set_target_properties (${MILESTONE_EXECUTABLE} PROPERTIES FOLDER ${MILESTONE_EXECUTABLE})
 
 target_link_libraries (${MILESTONE_EXECUTABLE}
   libouroboros
