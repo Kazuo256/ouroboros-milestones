@@ -4,6 +4,7 @@
 #include <languages/lua/header.h>
 #include <languages/lua/wrap/function.h>
 #include <languages/lua/wrap/module.h>
+#include <languages/lua/wrap/variable.h>
 
 #include <opa/script.h>
 #include <opa/scriptmanager.h>
@@ -31,8 +32,9 @@ using opa::Module;
 
 using opa::lua::LuaMachine;
 using opa::lua::State;
-using opa::lua::wrap::ModuleInfo;
 using opa::lua::wrap::Function;
+using opa::lua::wrap::ModuleInfo;
+using opa::lua::wrap::VariableGetter;
 
 namespace {
 
@@ -46,6 +48,10 @@ void hello () {
   cout << "Hello!" << endl;
 }
 
+int variable = 42;
+string name = "Bob";
+struct A {} object;
+
 int luaopen_native (lua_State* L_);
 
 ModuleInfo::FunctionList functions = {
@@ -53,10 +59,16 @@ ModuleInfo::FunctionList functions = {
     make_shared<Function<void (void)>>("hello",hello)
 };
 
+ModuleInfo::FunctionList getters = {
+    make_shared<VariableGetter<int>>("variable", &variable),
+    make_shared<VariableGetter<string>>("name", &name),
+    make_shared<VariableGetter<A>>("object", &object)
+};
+
 ModuleInfo info(
     "native", luaopen_native,
     {
-        {"getters",{}}, {"setters",{}}, {"functions",functions},
+        {"getters",getters}, {"setters",{}}, {"functions",functions},
         {"member_getters",{}},
         {"member_setters",{}},
         {"member_functions",{}}
