@@ -35,6 +35,7 @@ using opa::lua::State;
 using opa::lua::wrap::Function;
 using opa::lua::wrap::ModuleInfo;
 using opa::lua::wrap::VariableGetter;
+using opa::lua::wrap::VariableSetter;
 
 namespace {
 
@@ -65,10 +66,16 @@ ModuleInfo::FunctionList getters = {
     make_shared<VariableGetter<A>>("object", &object)
 };
 
+ModuleInfo::FunctionList setters = {
+    make_shared<VariableSetter<int>>("variable", &variable),
+    make_shared<VariableSetter<string>>("name", &name),
+    make_shared<VariableSetter<A>>("object", &object)
+};
+
 ModuleInfo info(
     "native", luaopen_native,
     {
-        {"getters",getters}, {"setters",{}}, {"functions",functions},
+        {"getters",getters}, {"setters",setters}, {"functions",functions},
         {"member_getters",{}},
         {"member_setters",{}},
         {"member_functions",{}}
