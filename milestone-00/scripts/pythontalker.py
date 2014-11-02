@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-import prompt
+import milestone_00_prompt as prompt
 
 prompt_token = "&"
 skip_lines = 1

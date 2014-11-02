@@ -1,5 +1,5 @@
 
-require 'prompt'
+prompt = require 'milestone_01_prompt'
 
 local out = prompt.out
 local input = prompt.input

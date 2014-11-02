@@ -1,51 +1,44 @@
 
 set (MILESTONE_EXECUTABLE milestone-00)
 
-ouroboros_wrap_module (
-  prompt
-  lua
-  ${CMAKE_CURRENT_LIST_DIR}
-  MILESTONE_LUA_GENERATED_SRC
+set ( PROMPT_SRC
+  prompt.cxx
+)
+
+set ( PROMPT_HEADERS
   prompt.h
 )
 
-ouroboros_wrap_module (
-  prompt
-  python
-  ${CMAKE_CURRENT_LIST_DIR}
-  MILESTONE_PYTHON_GENERATED_SRC
-  prompt.h
-)
+add_library(${MILESTONE_EXECUTABLE}-prompt ${PROMPT_HEADERS} ${PROMPT_SRC})
+set_target_properties (${MILESTONE_EXECUTABLE}-prompt PROPERTIES FOLDER ${MILESTONE_EXECUTABLE})
 
-set (
-  MILESTONE_GENERATED_SRC
-  ${MILESTONE_LUA_GENERATED_SRC}
-  ${MILESTONE_PYTHON_GENERATED_SRC}
-)
+ouroboros_export_metadata(${MILESTONE_EXECUTABLE}-prompt ${PROMPT_HEADERS})
+ouroboros_create_wrappers(${MILESTONE_EXECUTABLE}-prompt lua)
+ouroboros_create_wrappers(${MILESTONE_EXECUTABLE}-prompt python)
 
 set (
   MILESTONE_SRC
   main.cxx
-  prompt.h
-  prompt.cxx
 )
 
-set_source_files_properties (
-  ${MILESTONE_SRC}
-  PROPERTIES
-  COMPILE_FLAGS -std=gnu++0x
-)
+if (UNIX OR MINGW)
+    set_source_files_properties (
+      ${MILESTONE_SRC}
+      PROPERTIES
+      COMPILE_FLAGS -std=gnu++0x
+    )
+endif()
+   
 
-add_executable (
-  ${MILESTONE_EXECUTABLE}
-  ${MILESTONE_SRC}
-  ${MILESTONE_GENERATED_SRC}
-)
+add_executable (${MILESTONE_EXECUTABLE} ${MILESTONE_SRC})
+set_target_properties (${MILESTONE_EXECUTABLE} PROPERTIES FOLDER ${MILESTONE_EXECUTABLE})
 
-target_link_libraries (
-  ${MILESTONE_EXECUTABLE}
+target_link_libraries (${MILESTONE_EXECUTABLE}
   libouroboros
   libouroboros-lua
   libouroboros-python
+  ${MILESTONE_EXECUTABLE}-prompt
+  ${MILESTONE_EXECUTABLE}-prompt-lua
+  ${MILESTONE_EXECUTABLE}-prompt-python
 )
 

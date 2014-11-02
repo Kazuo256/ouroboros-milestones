@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-import prompt
+import milestone_01_prompt as prompt
 from prompt import out
 
 def main(name):

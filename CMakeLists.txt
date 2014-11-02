@@ -1,10 +1,15 @@
 
 cmake_minimum_required (VERSION 2.8)
 
-add_subdirectory (externals/ouroboros EXCLUDE_FROM_ALL)
+if(NOT ${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
+    # Don't polute the git repository with the generated files for out-of-source builds
+    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/.gitignore "*")
+endif()
+
+add_subdirectory (externals/ouroboros)
 
 include_directories (${OUROBOROS_INCLUDE_DIR})
-include (${OUROBOROS_WRAP_HELPER})
+include (externals/ouroboros/cmake/wrap_helper.cmake)
 
 add_subdirectory (milestone-00)
 add_subdirectory (milestone-01)

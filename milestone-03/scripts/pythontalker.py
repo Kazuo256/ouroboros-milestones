@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-    
 
-from prompt.input import Receiver
-import prompt
+from milestone_03_prompt.input import Receiver
+import milestone_03_prompt as prompt
 
 def main():
     rec = Receiver()

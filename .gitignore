@@ -8,3 +8,6 @@ CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
 bin
+*.so
+*.a
+*.json

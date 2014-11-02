@@ -1,5 +1,5 @@
 
-require 'prompt'
+prompt = require 'milestone_00_prompt'
 
 prompt_token  = ">"
 skip_lines    = 2
